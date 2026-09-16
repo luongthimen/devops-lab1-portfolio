@@ -34,16 +34,15 @@ jobs:
             exit 1
           fi
 
-      # -------------------------------------------------------------
-      # Step mới thêm: Tự động chấm điểm Performance, SEO với Lighthouse
-      # -------------------------------------------------------------
+      # Step 3: Tự động chấm điểm Performance, SEO với Lighthouse
       - name: Audit with Lighthouse
         uses: treosh/lighthouse-ci-action@v12
         with:
-          staticDistDir: './'
-          uploadTargets: 'temporary-public-storage'
+          urls: |
+            index.html
+          temporaryPublicStorage: true
 
-      # Step 3: Deploy lên GitHub Pages
+      # Step 4: Deploy lên GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
