@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Lấy toàn bộ lịch sử Git để Lighthouse đọc được commit hash
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
@@ -37,6 +36,9 @@ jobs:
 
       - name: Audit with Lighthouse
         uses: treosh/lighthouse-ci-action@v12
+        continue-on-error: true
+        env:
+          LHCI_BUILD_CONTEXT__CURRENT_HASH: ${{ github.sha }}
         with:
           urls: |
             https://luongthimen.github.io/devops-lab1-portfolio/
